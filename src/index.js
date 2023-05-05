@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 
 const getObject = (filePath) => {
-    const fullPath = path.resolve(process.cwd(), filePath); 
+    const fullPath = path.resolve(process.cwd(), 'files', filePath); 
     const data = fs.readFileSync(fullPath, 'utf-8');
     const object = JSON.parse(data);
     return object;
@@ -45,7 +45,7 @@ const getDifferences = (object1, object2) => {
             return (`  ${item.key}: ${item.value}`);
           }
           if (item.status === 'changed') {
-            return (`- ${item.key}: ${item.value.oldValue}\n+ ${item.key}: ${item.value.newValue}`);
+            return (`- ${item.key}: ${item.oldValue}\n+ ${item.key}: ${item.newValue}`);
           }
         });
         return `{\n${result.join('\n')}\n}`;
