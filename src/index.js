@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 
 const getObject = (filePath) => {
-    const fullPath = path.resolve(process.cwd(), 'files', filePath); 
+    const fullPath = path.resolve(process.cwd(), ' __fixtures__', filePath); 
     const data = fs.readFileSync(fullPath, 'utf-8');
     const object = JSON.parse(data);
     return object;
