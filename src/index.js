@@ -38,16 +38,16 @@ const getDifferences = (object1, object2) => {
 const getResultComparison = (differences) => {
   const result = differences.map((item) => {
     if (item.status === 'added') {
-      return (`+ ${item.key}: ${item.value}`);
+      return (` + ${item.key}: ${item.value}`);
     }
     if (item.status === 'deleted') {
-      return (`- ${item.key}: ${item.value}`);
+      return (` - ${item.key}: ${item.value}`);
     }
     if (item.status === 'unchanged') {
-      return (`  ${item.key}: ${item.value}`);
+      return (`   ${item.key}: ${item.value}`);
     }
     if (item.status === 'changed') {
-      return (`- ${item.key}: ${item.oldValue}\n+ ${item.key}: ${item.newValue}`);
+      return (` - ${item.key}: ${item.value1}\n + ${item.key}: ${item.value2}`);
     }
     return result;
   });
