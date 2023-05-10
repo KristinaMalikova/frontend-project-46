@@ -7,4 +7,10 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dc96f227f3b2a760fb96/test_coverage)](https://codeclimate.com/github/KristinaMalikova/frontend-project-46/test_coverage)
 
-<a href="https://asciinema.org/a/583094" target="_blank"><img src="https://asciinema.org/a/583094.svg" /></a>
+gendiff file1.json file2.json
+
+[![asciicast](https://asciinema.org/a/583094.svg)](https://asciinema.org/a/583094)
+
+gendiff file1.yml file2.yml
+
+[![asciicast](https://asciinema.org/a/583936.svg)](https://asciinema.org/a/583936)

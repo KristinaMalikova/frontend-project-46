@@ -1,11 +1,15 @@
 import _ from 'lodash';
 import path from 'path';
 import fs from 'fs';
+import parse from './parsers.js';
+
+const getTypeFile = (filePath) => path.extname(filePath).slice(1);
 
 const getObject = (filePath) => {
   const fullPath = path.resolve(process.cwd(), ' __fixtures__', filePath);
   const data = fs.readFileSync(fullPath, 'utf-8');
-  const object = JSON.parse(data);
+  const fileExt = getTypeFile(filePath);
+  const object = parse(data, fileExt);
   return object;
 };
 
