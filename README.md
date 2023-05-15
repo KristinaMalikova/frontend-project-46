@@ -22,3 +22,11 @@ $ gendiff filepath1.yml filepath2.yml
 ```
 
 [![asciicast](https://asciinema.org/a/583936.svg)](https://asciinema.org/a/583936)
+
+### Тестирование
+
+```
+$ make test
+```
+
+[![asciicast](https://asciinema.org/a/584963.svg)](https://asciinema.org/a/584963)
