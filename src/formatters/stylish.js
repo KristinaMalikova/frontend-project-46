@@ -2,6 +2,8 @@ import _ from 'lodash';
 
 const getIndent = (depth, replacer = ' ', spacesCount = 2) => replacer.repeat((depth * spacesCount) - 2);
 
+const getIndentBrackets = (depth, replacer = ' ', spacesCount = 2) => replacer.repeat((depth * spacesCount) - 4);
+
 const stringify = (nodeValue, depth = 2) => {
   if (!(_.isObject(nodeValue))) {
     return `${nodeValue}`;
@@ -27,7 +29,7 @@ const getStylish = (tree, depth = 2) => {
         throw new Error(`Unknown status ${node.status}`);
     }
   });
-  return `{\n${result.join('\n')}\n}`;
+  return `{\n${result.join('\n')}\n${getIndentBrackets(depth)}}`;
 };
 
 export default getStylish;

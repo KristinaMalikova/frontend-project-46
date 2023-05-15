@@ -15,13 +15,29 @@ const file1Yaml = getFixturePath('file1.yaml');
 const file2Yaml = getFixturePath('file2.yaml');
 
 describe('gendiff', () => {
-  expect(genDiff(file1Json, file2Json)).toEqual(readFile('expectedStylish.txt'));
-  expect(genDiff(file1Json, file2Json, 'stylish')).toEqual(readFile('expectedStylish.txt'));
-  expect(genDiff(file1Json, file2Json, 'plain')).toEqual(readFile('expectedPlain.txt'));
-  expect(genDiff(file1Json, file2Json, 'json')).toEqual(readFile('expectedJson.txt'));
+  test('should generate diff in the "stylish" format from two JSON files', () => {
+    expect(genDiff(file1Json, file2Json)).toEqual(readFile('expectedStylish.txt'));
+    expect(genDiff(file1Json, file2Json, 'stylish')).toEqual(readFile('expectedStylish.txt'));
+  });
 
-  expect(genDiff(file1Yaml, file2Yaml)).toEqual(readFile('expectedStylish.txt'));
-  expect(genDiff(file1Yaml, file2Yaml, 'stylish')).toEqual(readFile('expectedStylish.txt'));
-  expect(genDiff(file1Yaml, file2Yaml, 'plain')).toEqual(readFile('expectedPlain.txt'));
-  expect(genDiff(file1Yaml, file2Yaml, 'json')).toEqual(readFile('expectedJson.txt'));
+  test('should generate diff in the "plain" format from two JSON files', () => {
+    expect(genDiff(file1Json, file2Json, 'plain')).toEqual(readFile('expectedPlain.txt'));
+  });
+
+  test('should generate diff in the "json" format from two JSON files', () => {
+    expect(genDiff(file1Json, file2Json, 'json')).toEqual(readFile('expectedJson.txt'));
+  });
+
+  test('should generate diff in the "stylish" format from two YAML files', () => {
+    expect(genDiff(file1Yaml, file2Yaml)).toEqual(readFile('expectedStylish.txt'));
+    expect(genDiff(file1Yaml, file2Yaml, 'stylish')).toEqual(readFile('expectedStylish.txt'));
+  });
+
+  test('should generate diff in the "plain" format from two YAML files', () => {
+    expect(genDiff(file1Yaml, file2Yaml, 'plain')).toEqual(readFile('expectedPlain.txt'));
+  });
+
+  test('should generate diff in the "json" format from two YAML files', () => {
+    expect(genDiff(file1Yaml, file2Yaml, 'json')).toEqual(readFile('expectedJson.txt'));
+  });
 });
