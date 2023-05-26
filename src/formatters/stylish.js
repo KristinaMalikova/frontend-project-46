@@ -13,22 +13,27 @@ const stringify = (nodeValue, depth = 2) => {
 };
 
 const getStylish = (tree, depth = 2) => {
-  const result = tree.map((node) => {
-    switch (node.status) {
-      case 'added':
-        return `${getIndent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`;
-      case 'deleted':
-        return `${getIndent(depth)}- ${node.key}: ${stringify(node.value, depth)}`;
-      case 'nested':
-        return `${getIndent(depth)}  ${node.key}: ${getStylish(node.children, depth + 2)}`;
-      case 'changed':
-        return `${getIndent(depth)}- ${node.key}: ${stringify(node.value1, depth)}\n${getIndent(depth)}+ ${node.key}: ${stringify(node.value2, depth)}`;
-      case 'unchanged':
-        return `${getIndent(depth)}  ${node.key}: ${stringify(node.value, depth)}`;
-      default:
-        throw new Error(`Unknown status ${node.status}`);
-    }
-  });
+  const result = tree
+    .flatMap((
+      {
+        status, key, value, value1, value2, children,
+      },
+    ) => {
+      switch (status) {
+        case 'added':
+          return `${getIndent(depth)}+ ${key}: ${stringify(value, depth)}`;
+        case 'deleted':
+          return `${getIndent(depth)}- ${key}: ${stringify(value, depth)}`;
+        case 'nested':
+          return `${getIndent(depth)}  ${key}: ${getStylish(children, depth + 2)}`;
+        case 'changed':
+          return `${getIndent(depth)}- ${key}: ${stringify(value1, depth)}\n${getIndent(depth)}+ ${key}: ${stringify(value2, depth)}`;
+        case 'unchanged':
+          return `${getIndent(depth)}  ${key}: ${stringify(value, depth)}`;
+        default:
+          throw new Error(`Unknown status ${status}`);
+      }
+    });
   return `{\n${result.join('\n')}\n${getIndentBrackets(depth)}}`;
 };
 
